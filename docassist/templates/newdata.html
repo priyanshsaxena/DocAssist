@@ -1,0 +1,360 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- start: Meta -->
+	<meta charset="utf-8">
+	<title>DocAssist - add a new detail</title> 
+	<meta name="description" content="DocAssist"/>
+	<meta name="keywords" content="medical, assistant, training" />
+	<meta name="author" content="Priyansh Saxena"/>
+	<!-- end: Meta -->
+	
+	<!-- start: Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- end: Mobile Specific -->
+
+	<link rel="shortcut icon" href="{% static 'img/favicon.ico">
+	
+	<!-- start: Facebook Open Graph -->
+	<meta property="og:title" content=""/>
+	<meta property="og:description" content=""/>
+	<meta property="og:type" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:image" content=""/>
+	<!-- end: Facebook Open Graph -->
+
+    <!-- start: CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+	<link href="{% static 'css/style.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
+	<!-- end: CSS -->
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+	
+	<!--start: Header -->
+	<header>
+		
+		<!--start: Container -->
+		<div class="container">
+			
+			<!--start: Row -->
+			<div class="row">
+					
+				<!--start: Logo -->
+				<div class="logo span3">
+						
+					<a class="brand" href="http://localhost:8000/docassist/index.html"><img src="{% static 'img/name.png' %}"></a>
+						
+				</div>
+				<!--end: Logo -->
+					
+				<!--start: Navigation -->
+				<div class="span9">
+						
+					<div class="navbar navbar-inverse">
+			    		<div class="navbar-inner">
+			        		<div class="container">
+			          			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			            			<span class="icon-bar"></span>
+			            			<span class="icon-bar"></span>
+			            			<span class="icon-bar"></span>
+			          			</a>
+			          			<div class="nav-collapse collapse">
+			            			<ul class="nav">
+			              				<li><a href="http://localhost:8000/docassist/index.html">My Home</a></li>
+			              				<li><a href="http://localhost:8000/docassist/disease.html">Disease Map</a></li>
+										<li><a href="http://localhost:8000/docassist/training.html">My Training</a></li>
+			              				<li class="active"><a href="http://localhost:8000/docassist/newdata.html">Add Data</a></li>
+			            			</ul>
+			          			</div>
+			        		</div>
+			      		</div>
+			    	</div>
+					
+				</div>	
+				<!--end: Navigation -->
+					
+			</div>
+			<!--end: Row -->
+			
+		</div>
+		<!--end: Container-->			
+			
+	</header>
+	<!--end: Header-->
+	
+	<!-- start: Wrapper -->	
+	<div id="wrapper">		
+
+		<!-- start: Container -->	
+		<div class="container">
+			
+			<!-- start: Row -->
+			<div class="row">	
+
+				<!-- start: Contact Form -->
+				<div class="span4">
+					<div class="title"><h3>Enter Patient Diagnostics</h3></div>
+
+					<!-- start: Contact Form -->
+					<div id="contact-form">
+						
+						<form method="post" action="">
+
+							<fieldset>
+
+								<div id="symptoms">
+
+								<div class="clearfix">
+									<label for="symptom1"><span>Symptom 1</span></label>
+									<div class="input">
+										<input tabindex="1" size="18" id="symptom1" name="symptom1" type="text" value="">
+									</div>
+								</div>
+
+								</div>
+
+								<input type="button" value="Add another symptom" onClick="addSymptoms('symptoms');" style="margin-bottom: 10px">
+
+								<div class="clearfix">
+									<label for="disease"><span>Diagnosed disease</span></label>
+									<div class="input">
+										<input tabindex="2" size="25" id="disease" name="disease" type="text" value="" class="input-xlarge">
+									</div>
+								</div>
+
+								<div class="clearfix">
+									<label for="comments"><span>Additional comments</span></label>
+									<div class="input">
+										<textarea tabindex="3" class="input-xlarge" id="comments" name="body" rows="1"></textarea>
+									</div>
+								</div>
+
+								<div class="actions">
+									<button tabindex="3" type="submit" class="btn btn-succes btn-large">Add detail</button>
+								</div>
+							</fieldset>
+
+						</form>
+
+					</div>
+					<!-- end: Contact Form -->
+
+				</div>
+				<!-- end: Contact Form -->
+			
+			</div>
+			<!-- end: Row -->
+
+		</div>
+		<!-- end: Container -->
+				
+  	</div>
+	<!-- end: Wrapper  -->			
+
+    <!-- start: Footer Menu -->
+	<div id="footer-menu" class="hidden-tablet hidden-phone">
+
+		<!-- start: Container -->
+		<div class="container">
+
+			<!-- start: Row -->
+			<div class="row">
+
+				<!-- start: Footer Menu Logo -->
+				<div class="span2">
+					<div id="footer-menu-logo">
+						<a href="#"><img src="{% static 'img/logo-footer-menu.png' %}" alt="logo" /></a>
+					</div>
+				</div>
+				<!-- end: Footer Menu Logo -->
+
+				<!-- start: Footer Menu Links-->
+				<div class="span9">
+					
+					<div id="footer-menu-links">
+
+						<ul id="footer-nav">
+
+							<li><a href="index.html">Take Me Home</a></li>
+
+							<li><a href="disease.html">Disease Map</a></li>
+
+							<li><a href="training.html">My Training</a></li>
+							
+							<li><a href="newdata.html">Add Data</a></li>
+
+						</ul>
+
+					</div>
+					
+				</div>
+				<!-- end: Footer Menu Links-->
+
+				<!-- start: Footer Menu Back To Top -->
+				<div class="span1">
+
+					<div id="footer-menu-back-to-top">
+						<a href="#"></a>
+					</div>
+
+				</div>
+				<!-- end: Footer Menu Back To Top -->
+
+			</div>
+			<!-- end: Row -->
+
+		</div>
+		<!-- end: Container  -->	
+
+	</div>	
+	<!-- end: Footer Menu -->
+
+	<!-- start: Footer -->
+	<div id="footer">
+
+		<!-- start: Container -->
+		<div class="container">
+
+			<!-- start: Row -->
+			<div class="row">
+
+				<!-- start: About -->
+				<div class="span3">
+
+					<h3>About Us</h3>
+					<p>
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+					</p>
+
+				</div>
+				<!-- end: About -->
+
+				<div class="span6">
+
+					<!-- start: Follow Us -->
+					<h3>Follow Us!</h3>
+					<ul class="social-grid">
+						<li>
+							<div class="social-item">				
+								<div class="social-info-wrap">
+									<div class="social-info">
+										<div class="social-info-front social-twitter">
+											<a href="https://twitter.com/curiouspriyansh"></a>
+										</div>
+										<div class="social-info-back social-twitter-hover">
+											<a href="https://twitter.com/curiouspriyansh"></a>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="social-item">				
+								<div class="social-info-wrap">
+									<div class="social-info">
+										<div class="social-info-front social-facebook">
+											<a href="https://www.facebook.com/PCGAYLE"></a>
+										</div>
+										<div class="social-info-back social-facebook-hover">
+											<a href="https://www.facebook.com/PCGAYLE"></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="social-item">				
+								<div class="social-info-wrap">
+									<div class="social-info">
+										<div class="social-info-front social-linkedin">
+											<a href="https://www.linkedin.com/in/priyanshsaxena/"></a>
+										</div>
+										<div class="social-info-back social-linkedin-hover">
+											<a href="https://www.linkedin.com/in/priyanshsaxena/"></a>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="social-item">				
+								<div class="social-info-wrap">
+									<div class="social-info">
+										<div class="social-info-front social-skype">
+											<a href="http://skype.com"></a>
+										</div>
+										<div class="social-info-back social-skype-hover">
+											<a href="http://skype.com"></a>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<!-- end: Follow Us -->
+
+					<!-- start: Newsletter -->
+					<form id="newsletter">
+						<h3>Newsletter</h3>
+						<p>Please leave us your email</p>
+						<label for="newsletter_input">@:</label>
+						<input type="text" id="newsletter_input"/>
+						<input type="submit" id="newsletter_submit" value="submit">
+					</form>
+					<!-- end: Newsletter -->
+
+				</div>
+
+			</div>
+			<!-- end: Row -->	
+
+		</div>
+		<!-- end: Container  -->
+
+	</div>
+	<!-- end: Footer -->
+
+	<!-- start: Copyright -->
+	<div id="copyright">
+	
+		<!-- start: Container -->
+		<div class="container">
+		
+			<p>
+				&copy; 2017, MangoPeople. <a href="http://bootstrapmaster.com" alt="Bootstrap Themes">Bootstrap Themes</a> designed by BootstrapMaster in Poland <img src="{% static 'img/poland2.png' %}" alt="Poland" style="margin-top:-4px">
+			</p>
+	
+		</div>
+		<!-- end: Container  -->
+		
+	</div>	
+	<!-- end: Copyright -->
+
+<!-- start: Java Script -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static 'js/jquery-1.8.2.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/flexslider.js' %}"></script>
+<script src="{% static 'js/carousel.js' %}"></script>
+<script src="{% static 'js/jquery.cslider.js' %}"></script>
+<script src="{% static 'js/slider.js' %}"></script>
+<script def src="{% static 'js/custom.js' %}"></script>
+<script src="{% static 'js/limiter.js' %}"></script>
+<!-- end: Java Script -->
+
+</body>
+</html>

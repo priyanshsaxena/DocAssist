@@ -1,0 +1,12 @@
+<!-- Our HTML Template (templates/index.html) that is fed data from views.py -->
+{% extends "base.html" %}
+{% block content %}
+
+<script type="text/javascript" src="/static/a.js"></script>
+
+<script> 
+var DOMAIN = "{{ site_domain }}";
+</script>
+
+<!-- rest of our template, business as usual. -->
+{% endblock %}

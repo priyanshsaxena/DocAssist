@@ -1,0 +1,425 @@
+{% load static %}
+{% csrf_token %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- start: Meta -->
+	<meta charset="utf-8">
+	<title>DocAssist - read about a disease</title> 
+	<meta name="description" content="DocAssist"/>
+	<meta name="keywords" content="medical, assistant, training" />
+	<meta name="author" content="Priyansh Saxena"/>
+	<!-- end: Meta -->
+	
+	<!-- start: Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- end: Mobile Specific -->
+	
+	<!-- start: Facebook Open Graph -->
+	<meta property="og:title" content=""/>
+	<meta property="og:description" content=""/>
+	<meta property="og:type" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:image" content=""/>
+	<!-- end: Facebook Open Graph -->
+
+    <!-- start: CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css' %}" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+	<link rel="stylesheet" type="text/css' %}" href="http://fonts.googleapis.com/css?family=Droid+Serif">
+	<link rel="stylesheet" type="text/css' %}" href="http://fonts.googleapis.com/css?family=Boogaloo">
+	<link rel="stylesheet" type="text/css' %}" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
+	<link rel="stylesheet" href="{% static 'css/auto-complete.css' %}">
+	<link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+	<style>
+		#resultset {
+			width: 70%;
+			font-size: 16px;
+			height: auto;
+			min-height: 300px;
+			margin: 0 auto;
+			white-space: pre-line;
+
+		}
+
+	</style>
+	<!-- end: CSS -->
+
+	<script src="{% static 'js/modernizr-2.6.2.min.js' %}"></script>
+
+	<script type="text/javascript">
+		var results = "{{ results }}";
+	</script>
+
+	<script>
+	window.onload = function () {
+		var showtime = [];
+    	var name = "";
+    	var summary = "";
+    	var url = "";
+    	var current = "";
+    	var k = [];
+    		var s = results.length;
+    		for(var i = 0 ; i < s ; i++) {
+    			if(result[i]==';') {
+    				url = current;
+    				current = "";
+    				k.push(name);
+    				k.push(summary);
+    				k.push(url);
+    				showtime.push[k];
+    			}
+    			else if(results[i]=='>') {
+    				summary = current;
+    				current = "";
+    			}
+    			else if(results[i]==',') {
+    				name = current;
+    				current = "";
+    			}
+    			else {
+    				current += results[i];
+    			}
+    		}
+    		url = current;
+    		current = "";
+    		k.push(name);
+    		k.push(summary);
+    		k.push(url);
+    		showtime.push[k];
+		   	nut = "";//document.getElementById('resultset').innerHTML;
+
+    	for(var i = 0; i < showtime.length; i++) {
+    		var name = showtime[i][0];
+    		var summary = showtime[i][1];
+    		var link = showtime[i][2];
+    		nut += ("<h3>" + name + "</h3><br/><br/><p style=\"font-size:2em;\">" + summary + "</p><br/><br/><img src=\"" + link + "\" style=\"border:2px solid;\" /><hr style=\"width: 2px;\">"); 
+    	}
+
+    	document.getElementById('resultset').innerHTML = nut;
+}
+    </script>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js' %}"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+	<div id="loader-wrapper">
+		<div id="loader"></div>
+
+		<div class="loader-section section-left">Please wait.</div>
+        <div class="loader-section section-right">Best results are about to come.....</div>
+
+	</div>
+	
+	<!--start: Header -->
+	<header>
+		
+		<!--start: Container -->
+		<div class="container">
+			
+			<!--start: Row -->
+			<div class="row">
+					
+				<!--start: Logo -->
+				<div class="logo span3">
+						
+					<a class="brand" href="http://localhost:8000/docassist/index.html"><img src="{% static 'img/name.png' %}"></a>
+						
+				</div>
+				<!--end: Logo -->
+					
+				<!--start: Navigation -->
+				<div class="span9">
+						
+					<div class="navbar navbar-inverse">
+			    		<div class="navbar-inner">
+			        		<div class="container">
+			          			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			            			<span class="icon-bar"></span>
+			            			<span class="icon-bar"></span>
+			            			<span class="icon-bar"></span>
+			          			</a>
+			          			<div class="nav-collapse collapse">
+			            			<ul class="nav">
+			              				<li><a href="http://localhost:8000/docassist/index.html">Home</a></li>
+			              				<li><a href="http://localhost:8000/docassist/disease.html">Disease Map</a></li>
+										<li><a href="http://localhost:8000/docassist/training.html">My Training</a></li>
+			              				<li><a href="http://localhost:8000/docassist/newdata.html">Add Data</a></li>
+			            			</ul>
+			          			</div>
+			        		</div>
+			      		</div>
+			    	</div>
+					
+				</div>	
+				<!--end: Navigation -->
+					
+			</div>
+			<!--end: Row -->
+			
+		</div>
+		<!--end: Container-->			
+			
+	</header>
+	<!--end: Header-->
+
+	<!-- start: Page Title -->
+	<div id="page-title">
+
+		<div id="page-title-inner">
+
+			<!-- start: Container -->
+			<div class="container">
+
+				<h2><i class="ico-notes-2 ico-white"></i>Search</h2>
+
+			</div>
+			<!-- end: Container  -->
+
+		</div>	
+
+	</div>
+	<!-- end: Page Title -->
+
+	<div style="height:auto;min-height:100px;">
+	    <form class="pure-form" style="border-top: 1px solid #eee;border-bottom:1px solid #eee;background:#fafafa;margin:30px 0;padding:20px 10px;text-align:center" action="/docassist/search.html" method="post">
+	    	{% csrf_token %}
+	    	<label for="se">Search: </label>
+	        <input id="searchbox" autofocus type="text" name="q" placeholder="Search for a disease" style="height:2em; width:100%;max-width:600px;outline:0" value="{{ search_query }}">
+	        <br/>
+	        <input id="submit" class="submitButton" type="submit" name="search" style="height: 2em;" value="Search">
+	    </form>
+	    <script src="{% static 'js/auto-complete.js' %}"></script>
+	    <script>
+	        var demo1 = new autoComplete({
+	            selector: '#searchbox',
+	            minChars: 1,
+	            source: function(term, suggest){
+	                term = term.toLowerCase();
+	                var choices = ['influenza','gastritis','hypercholesterolemia','epilepsy','insufficiency renal','dehydration','hypothyroidism','hernia hiatal','fibroid tumor','deglutition disorder','osteoporosis','chronic alcoholic intoxication','asthma','sepsis invertebrate','paranoia','ileus','neoplasm','obesity morbid','primary malignant neoplasm','failure heart','malignant neoplasm of breast','tonic-clonic epilepsy','transient ischemic attack','malignant neoplasm of prostate','embolism pulmonary','tricuspid valve insufficiency','respiratory failure','degenerative polyarthritis','aphasia','neoplasm metastasis','malignant tumor of colon','lymphoma','anemia','chronic obstructive airway disease','sickle cell anemia','coronary arteriosclerosis','cholecystitis','psychotic disorder','thrombus','chronic kidney failure','depressive disorder','myocardial infarction','obesity','infection urinary tract','tachycardia sinus','gout','hyperglycemia','diverticulosis','failure kidney','schizophrenia','decubitus ulcer','encephalopathy','affect labile','carcinoma prostate','Alzheimer\'s disease','incontinence','hyperbilirubinemia','paroxysmal dyspnea','bipolar disorder','hepatitis','pericardial effusion body substance','adhesion','biliary calculus','endocarditis','acquired immuno-deficiency syndrome','pneumothorax','accident cerebrovascular','confusion','candidiasis','anxiety state','cirrhosis','pancytopenia','oral candidiasis','diverticulitis','spasm bronchial','ulcer peptic','depression mental','emphysema pulmonary','hypoglycemia','dependence','osteomyelitis','hemorrhoids','primary carcinoma of the liver cells','pyelonephritis','pancreatitis','cholelithiasis','cardiomyopathy','Pneumocystis carinii pneumonia','carcinoma colon','edema pulmonary','carcinoma breast','hemiparesis','mitral valve insufficiency','peripheral vascular disease','tonic-clonic seizures','effusion pericardial','thrombocytopaenia','adenocarcinoma','failure heart congestive','exanthema','ischemia','hypertension pulmonary','infection','cellulitis','lymphatic diseases','gastroenteritis','parkinson disease','hernia','kidney disease','colitis','deep vein thrombosis','personality disorder','hyperlipidemia','pneumonia','gastroesophageal reflux disease','pneumonia aspiration','stenosis aortic valve','hypertensive disease','glaucoma','septicemia','bronchitis','delusion','upper respiratory infection','dementia','ketoacidosis diabetic ','manic disorder','suicide attempt','hiv infections','benign prostatic hypertrophy','HIV','bacteremia','neutropenia','hepatitis B','hepatitis C','coronary heart disease','carcinoma of lung','arthritis','malignant neoplasm of lung','carcinoma','delirium','melanoma','kidney failure acute','diabetes','systemic infection','malignant neoplasms','neuropathy','overload fluid','migraine disorders'];
+	                var suggestions = [];
+	                for (i=0;i<choices.length;i++)
+	                    if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+	                suggest(suggestions);
+	            }
+	        });
+
+	    </script>
+
+	</div>
+
+	<div id="resultset">{{ results }}</div>
+
+    <!-- start: Footer Menu -->
+	<div id="footer-menu" class="hidden-tablet hidden-phone">
+
+		<!-- start: Container -->
+		<div class="container">
+			
+			<!-- start: Row -->
+			<div class="row">
+
+				<!-- start: Footer Menu Logo -->
+				<div class="span2">
+					<div id="footer-menu-logo">
+						<a href="#"><img src="{% static 'img/logo-footer-menu.png' %}" alt="logo" /></a>
+					</div>
+				</div>
+				<!-- end: Footer Menu Logo -->
+
+				<!-- start: Footer Menu Links-->
+				<div class="span9">
+					
+					<div id="footer-menu-links">
+
+						<ul id="footer-nav">
+
+							<li><a href="index.html">Take Me Home</a></li>
+
+							<li><a href="disease.html">Disease Map</a></li>
+
+							<li><a href="training.html">My Training</a></li>
+							
+							<li><a href="newdata.html">Add Data</a></li>
+
+						</ul>
+
+					</div>
+					
+				</div>
+				<!-- end: Footer Menu Links-->
+
+				<!-- start: Footer Menu Back To Top -->
+				<div class="span1">
+						
+					<div id="footer-menu-back-to-top">
+						<a href="#"></a>
+					</div>
+				
+				</div>
+				<!-- end: Footer Menu Back To Top -->
+			
+			</div>
+			<!-- end: Row -->
+			
+		</div>
+		<!-- end: Container  -->	
+
+	</div>	
+	<!-- end: Footer Menu -->
+
+	<!-- start: Footer -->
+	<div id="footer">
+		
+		<!-- start: Container -->
+		<div class="container">
+			
+			<!-- start: Row -->
+			<div class="row">
+
+				<!-- start: About -->
+				<div class="span3">
+					
+					<h3>About Us</h3>
+					<p>
+						Team MangoPeople
+					</p>
+						
+				</div>
+				<!-- end: About -->
+
+				<div class="span6">
+				
+					<!-- start: Follow Us -->
+					<h3>Follow Us!</h3>
+					<ul class="social-grid">
+						<li>
+							<div class="social-item">				
+								<div class="social-info-wrap">
+									<div class="social-info">
+										<div class="social-info-front social-twitter">
+											<a href="https://twitter.com/curiouspriyansh"></a>
+										</div>
+										<div class="social-info-back social-twitter-hover">
+											<a href="https://twitter.com/curiouspriyansh"></a>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="social-item">				
+								<div class="social-info-wrap">
+									<div class="social-info">
+										<div class="social-info-front social-facebook">
+											<a href="https://www.facebook.com/PCGAYLE"></a>
+										</div>
+										<div class="social-info-back social-facebook-hover">
+											<a href="https://www.facebook.com/PCGAYLE"></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="social-item">				
+								<div class="social-info-wrap">
+									<div class="social-info">
+										<div class="social-info-front social-linkedin">
+											<a href="https://www.linkedin.com/in/priyanshsaxena/"></a>
+										</div>
+										<div class="social-info-back social-linkedin-hover">
+											<a href="https://www.linkedin.com/in/priyanshsaxena/"></a>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="social-item">				
+								<div class="social-info-wrap">
+									<div class="social-info">
+										<div class="social-info-front social-skype">
+											<a href="http://skype.com"></a>
+										</div>
+										<div class="social-info-back social-skype-hover">
+											<a href="http://skype.com"></a>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<!-- end: Follow Us -->
+				
+					<!-- start: Newsletter -->
+					<form id="newsletter">
+						<h3>Newsletter</h3>
+						<p>Please leave us your email</p>
+						<label for="newsletter_input">@:</label>
+						<input type="text" id="newsletter_input"/>
+						<input type="submit" id="newsletter_submit" value="submit">
+					</form>
+					<!-- end: Newsletter -->
+				
+				</div>
+				
+			</div>
+			<!-- end: Row -->	
+			
+		</div>
+		<!-- end: Container  -->
+
+	</div>
+	<!-- end: Footer -->
+
+	<!-- start: Copyright -->
+	<div id="copyright">
+	
+		<!-- start: Container -->
+		<div class="container">
+		
+			<p>
+				&copy; 2017, MangoPeople. <a href="http://bootstrapmaster.com" alt="Bootstrap Themes">Bootstrap Themes</a> designed by BootstrapMaster in Poland <img src="{% static 'img/poland2.png' %}" alt="Poland" style="margin-top:-4px">
+			</p>
+	
+		</div>
+		<!-- end: Container  -->
+		
+	</div>	
+	<!-- end: Copyright -->
+
+<!-- start: Java Script -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static 'js/jquery-1.8.2.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/flexslider.js' %}"></script>
+<script src="{% static 'js/carousel.js' %}"></script>
+<script src="{% static 'js/jquery.cslider.js' %}"></script>
+<script src="{% static 'js/slider.js' %}"></script>
+<script def src="{% static 'js/custom.js' %}"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.9.1.min.js"><\/script>')</script>
+<script>
+	$(document).ready(function() {	
+		setTimeout(function(){
+			$('body').addClass('loaded');
+			$('h1').css('color','#222222');
+		}, 500);
+		
+	});
+</script>
+<!-- end: Java Script -->
+
+</body>
+</html>	
